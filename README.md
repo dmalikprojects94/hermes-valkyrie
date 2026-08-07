@@ -163,16 +163,81 @@ Hermes Valkyrie separates agent operation into a few essential systems that can 
 ## Project Tree
 
 ```text
-.github/workflows/     Public-safe validation workflow for clean checkouts.
-adapters/              Runtime-specific materialization maps and commands.
-config/                Safe example configuration.
-docs/                  Public documentation source tree.
-examples/              Minimal example routing, loadout, and task files.
-hermes-gateway-skills/ Optional frozen Hermes bridge skill snapshots.
-loadouts/              Named loadout definitions and overlays. loadouts/<runtime>/Folder-Start/ holds the baseline runtime surface copied into every materialized loadout.
-scripts/               Validation, route resolution, materialization, and managed-runner tools.
-shared/                Reusable shared instructions, skills, hooks, and packs.
-spec/                  Loadout schema.
+/ (public repo root)
+├── .github/
+│   └── workflows/
+│       └── public-validation.yml
+├── adapters/
+│   ├── claude/
+│   │   ├── agents/
+│   │   ├── commands/
+│   │   ├── registry.yaml
+│   │   └── runtime-map.yaml
+│   └── codex/
+│       ├── commands.yaml
+│       └── runtime-map.yaml
+├── config/
+│   └── onboarding.example.toml
+├── docs/
+│   ├── architecture/
+│   ├── guides/
+│   ├── integrations/
+│   ├── reference/
+│   ├── tutorials/
+│   ├── CONTRIBUTING.md
+│   ├── DOCUMENTATION-OVERVIEW.md
+│   ├── DOCUMENTATION-PURPOSE.md
+│   ├── INSTALL.md
+│   ├── README.md
+│   └── SECURITY.md
+├── examples/
+│   ├── claude/
+│   ├── codex/
+│   ├── tasks/
+│   └── hermes-routing.json
+├── hermes-gateway-skills/
+│   ├── autonomous-ai-agents/
+│   ├── manifest.json
+│   └── README.md
+├── loadouts/
+│   ├── claude/
+│   ├── codex/
+│   ├── coding/
+│   ├── deep-coding/
+│   ├── default/
+│   ├── devops/
+│   ├── frontend-design/
+│   ├── frontend-research-audit/
+│   ├── loadout-management/
+│   ├── marketing/
+│   ├── media-video/
+│   ├── open-design/
+│   ├── project-planner/
+│   ├── research/
+│   └── writing-docs/
+├── scripts/
+│   ├── apply_loadout.py
+│   ├── coding_terminal_runner.py
+│   ├── list_runtime_commands.py
+│   ├── prompt_manager.py
+│   ├── resolve_route.py
+│   ├── run_loaded_agent.py
+│   ├── smoke_clean_hermes_onboarding.py
+│   ├── validate_loadouts.py
+│   └── supporting runtime/terminal/report scripts
+├── shared/
+│   ├── hooks/
+│   ├── instructions/
+│   ├── mcp/
+│   ├── packs/
+│   └── skills/
+├── spec/
+│   └── loadout-schema.yaml
+├── .env.example
+├── .gitignore
+├── CHANGELOG.md
+├── LICENSE
+└── README.md
 ```
 
 ## Documentation
