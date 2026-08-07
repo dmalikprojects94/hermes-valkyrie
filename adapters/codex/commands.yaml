@@ -1,0 +1,46 @@
+commands:
+  help:
+    title: Help
+    purpose: Show Codex interactive help when supported by the active TUI.
+    source: native
+    evidence: probed via visible TUI; command accepted without model turn
+  skills:
+    title: Skills
+    purpose: List available Codex skills in the current session.
+    source: native
+    evidence: Codex startup banner says "Use /skills to list available skills"
+  model:
+    title: Model
+    purpose: Change or inspect the active model.
+    source: native
+    evidence: Codex banner says "/model to change"
+  fast:
+    title: Fast Mode
+    purpose: Enable Codex fast inference mode when available for the account.
+    source: native
+    evidence: Codex startup tip says "Use /fast"
+  compact:
+    title: Compact
+    purpose: Compact long conversation history to recover context budget.
+    source: native
+    evidence: Codex binary guidance says "Use /compact when the conversation gets long"
+  init:
+    title: Init
+    purpose: Initialize Codex project guidance in a workspace when safe.
+    source: native
+    evidence: Codex binary contains /init safety text
+  status:
+    title: Status
+    purpose: Refresh and display account/session status and rate-limit information.
+    source: native
+    evidence: Codex binary contains /status refresh guidance
+  review:
+    title: Review
+    purpose: Start Codex review mode for code review tasks.
+    source: native
+    evidence: Codex binary says interrupted review tasks should be re-initiated with /review
+  goal:
+    title: Goal
+    purpose: Set or manage an active Codex goal for budgeted autonomous work.
+    source: native
+    evidence: Codex binary and app protocol include thread goal methods and /goal text

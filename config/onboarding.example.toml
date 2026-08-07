@@ -1,0 +1,53 @@
+# Onboarding answer sheet — TEMPLATE (placeholder values only).
+#
+# Copy to config/onboarding.toml and fill in your own values:
+#   cp config/onboarding.example.toml config/onboarding.toml
+#
+# config/onboarding.toml is git-ignored. This template must never contain real
+# paths, IDs, tokens, emails, or operator names. See
+# docs/guides/operator-personalization.md for what each field means and where
+# it belongs. Secrets (tokens, webhook URLs) do NOT go here — put them
+# in an untracked .env.
+
+[runtime]
+# Which runtimes this machine can launch and has authenticated.
+claude_available = false
+codex_available = false
+
+[save_destination]
+# Optional absolute path to a durable capture folder. Leave empty to fall back
+# to ./local-runtime-artifacts/raw-capture/. Prefer setting SAVE_DESTINATION_PATH
+# in the environment; this is only a record of your choice.
+path = "<path-to-save-folder>"
+
+[reportback]
+# One of: discord, slack, webhook, local. Default to local until a networked
+# transport is approved. local needs no network and reuses save_destination.
+transport = "local"
+
+[reportback.discord]
+# Secret token lives in .env (DISCORD_BOT_TOKEN), never here.
+# Live IDs are normally supplied per run by the Hermes gateway.
+guild_id = "<guild-id>"
+channel_id = "<channel-id>"
+thread_id = "<thread-id>"
+thread_name = "<thread-name>"
+
+[reportback.slack]
+# Secret token lives in .env, never here. IDs usually come from the gateway.
+channel_id = "<slack-channel-id>"
+thread_ts = "<slack-thread-ts>"
+
+[reportback.local]
+# Output folder for file-based reportback. Leave empty to reuse save_destination.
+output_dir = "<path-to-local-reportback-folder>"
+
+[repos]
+# Machine-specific absolute paths. Supply per invocation or record privately.
+loadout_repo = "<path-to-loadout-repo>"
+target_repo = "<path-to-target-repo>"
+
+[live_home]
+# Explicit approval is required before writing into ~/.claude or ~/.codex.
+# Default is false. A human flips this only with intent.
+apply_approved = false

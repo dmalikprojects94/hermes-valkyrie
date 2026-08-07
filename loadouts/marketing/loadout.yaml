@@ -1,0 +1,48 @@
+name: marketing
+description: Product marketing, positioning, launch messaging, landing-page copy, and customer-facing narrative work.
+base: default
+aliases: [marketing, product marketing, launch copy, landing page copy, copywriting]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 75
+  explicit_keywords:
+    - marketing
+    - product marketing
+    - launch copy
+    - landing page copy
+    - copywriting
+    - positioning
+purpose: Provide a named messaging lane that does not burden coding or documentation sessions.
+when_to_use:
+  - Positioning, landing-page sections, launch content, customer-facing copy, social/email drafts, and messaging variants.
+  - Translating product facts into benefit-led narrative with evidence gaps called out.
+when_not_to_use:
+  - Technical docs and runbooks; use writing-docs.
+  - UI implementation; use frontend-design or open-design depending on artifact needs.
+shared_instructions:
+  - core-operating-rules
+  - prompt-discipline
+  - context-discipline
+  - reporting-contract
+shared_skills:
+  - prompt-optimizer
+  - research-ops
+  - marketing-copy
+packs:
+  - marketing
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [plan, research, verify, prompt-optimize, update-docs, save-session, resume-session, command-inventory]
+    agents: [planner, docs-lookup]
+    hooks: [suggest-compact, hermes-run-report]
+    mcp: [filesystem, playwright]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: high

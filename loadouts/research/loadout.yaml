@@ -1,0 +1,49 @@
+name: research
+description: Extended investigation and evidence-backed synthesis beyond the default baseline.
+base: default
+aliases: [research, investigate, docs analysis]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 95
+  explicit_keywords:
+    - research
+    - investigate
+    - docs analysis
+    - evidence-backed findings
+    - determine the loadout
+    - prove what got generated
+    - inspect generated output
+    - validate generated output
+    - verify the generated surface
+purpose: Widen investigation posture while keeping implementation separate.
+when_to_use:
+  - Documentation comparison and library investigation.
+  - Evidence-backed analysis before implementation.
+when_not_to_use:
+  - Pure implementation work better handled by default or deep-coding.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - reporting-contract
+  - research-posture
+shared_skills:
+  - verification-loop
+  - research-ops
+packs:
+  - research
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [research, plan, verify, prompt-optimize]
+    agents: [docs-lookup]
+    hooks: []
+    mcp: [playwright]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: high

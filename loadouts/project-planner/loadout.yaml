@@ -1,0 +1,44 @@
+name: project-planner
+description: Planning-first route for scoping, sequencing, and execution handoff work.
+base: default
+aliases: [project-planner, planner, planning, roadmap]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 85
+  explicit_keywords: [project planner, planning, roadmap, handoff plan]
+purpose: Shape ambiguous work into concrete deliverables before implementation begins.
+when_to_use:
+  - Planning, sequencing, and roadmap work.
+  - Research-backed project shaping before coding.
+when_not_to_use:
+  - Immediate implementation work.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - reporting-contract
+  - planning-posture
+shared_skills:
+  - verification-loop
+  - grill-with-docs
+  - grill-me
+  - to-prd
+  - to-issues
+  - triage
+packs:
+  - project-planner
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [plan, prompt-optimize, verify]
+    agents: [planner, docs-lookup, code-architect]
+    hooks: []
+    mcp: [playwright]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: high

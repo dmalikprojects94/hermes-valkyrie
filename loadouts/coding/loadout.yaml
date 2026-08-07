@@ -1,0 +1,39 @@
+name: coding
+description: Stronger day-to-day implementation route that sits between default and deep-coding.
+base: default
+aliases: [coding, implementation-light]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 60
+  explicit_keywords: [coding loadout, implementation-light]
+purpose: Add a heavier implementation posture without going full deep-coding.
+when_to_use:
+  - Real repo work that needs more implementation discipline than default.
+when_not_to_use:
+  - Marathon multi-phase work better handled by deep-coding.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - reporting-contract
+shared_skills:
+  - verification-loop
+  - diagnose
+  - prototype
+packs:
+  - deep-coding
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [context-budget, harness-audit]
+    agents: [refactor-cleaner, typescript-reviewer]
+    hooks: []
+    mcp: []
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: medium

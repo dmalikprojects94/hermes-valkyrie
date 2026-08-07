@@ -1,0 +1,49 @@
+runtime: claude
+managed_paths:
+  claude_md: CLAUDE.md
+  commands_dir: commands
+  agents_dir: agents
+  skills_dir: skills
+  rules_dir: rules
+  templates_dir: templates
+  bin_dir: bin
+  hooks_dir: hooks
+  mcp_dir: mcp
+  metadata_file: hermes-loadout.json
+bootstrap:
+  style: session-start
+  shared_intent: shared/instructions/runtime-bootstrap.md
+  events: [startup, clear, compact]
+  materialized_to: rules/runtime-bootstrap.md
+  notes:
+    - Claude bootstrap is represented as rules plus optional registered hooks.
+    - Keep hook/event naming Claude-specific while preserving shared bootstrap intent.
+tool_map:
+  shared_intent: shared/instructions/runtime-tool-map.md
+  materialized_to: rules/runtime-tool-map.md
+capabilities:
+  skill_bootstrap:
+    surface: skills/*/SKILL.md
+    parity: shared-intent
+  slash_commands:
+    surface: commands/*.md
+    parity: adapter-specific
+  delegated_work:
+    surface: agents/*.md
+    parity: runtime-specific
+  runtime_hooks:
+    surface: hooks.json + hooks/*
+    parity: adapted-one-to-one where possible
+  mcp:
+    surface: mcp/servers.json
+    parity: adapter-specific
+  memory:
+    surface: CLAUDE.md + rules/*.md
+    parity: shared-intent
+  safety:
+    surface: launch flags and operator policy
+    parity: runtime-specific
+notes:
+  - Materialize the selected loadout into the Claude home before launch.
+  - Keep loadout-managed files separate from unrelated plugin state.
+  - Source-accounted from Superpowers v6.0.2 runtime bootstrap/tool-map patterns without bulk-importing upstream structure.

@@ -1,0 +1,44 @@
+name: frontend-design
+description: Browser-verified UI implementation and design-focused frontend work.
+base: default
+aliases: [frontend-design, frontend design, design, ui, frontend]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 100
+  explicit_keywords: [frontend design, ui design, redesign, browser-verified ui, frontend]
+purpose: Apply a stronger frontend quality bar and browser-verified implementation posture.
+when_to_use:
+  - UI implementation and redesign work.
+  - Frontend tasks where visual quality and browser verification matter.
+when_not_to_use:
+  - Backend-only coding.
+  - Pure research without implementation.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - reporting-contract
+  - browser-verification
+shared_skills:
+  - verification-loop
+  - frontend-motion-audit
+  - shadcn-discipline
+  - impeccable-design-quality
+  - minimalist-ui
+packs:
+  - frontend-design
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: []
+    agents: []
+    hooks: [pre-bash-dev-server-block]
+    mcp: [playwright]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: medium

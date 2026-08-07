@@ -1,0 +1,43 @@
+runtime: codex
+managed_paths:
+  config_file: config.toml
+  skills_dir: skills
+  memories_dir: memories
+  metadata_file: hermes-loadout.json
+bootstrap:
+  style: session-start
+  shared_intent: shared/instructions/runtime-bootstrap.md
+  events: [startup, resume, clear]
+  materialized_to: memories/runtime-bootstrap.md
+  notes:
+    - Codex bootstrap is represented as memories plus config-managed active-loadout skill materialization.
+    - Codex matcher names diverge from Claude: resume is the Codex equivalent of continuing a session.
+tool_map:
+  shared_intent: shared/instructions/runtime-tool-map.md
+  materialized_to: memories/runtime-tool-map.md
+capabilities:
+  skill_bootstrap:
+    surface: skills/*/SKILL.md
+    parity: shared-intent
+  slash_commands:
+    surface: native plus command-equivalent skills
+    parity: adapter-specific
+  delegated_work:
+    surface: prompt/tool instructions with explicit fallback
+    parity: acceptable-gap until native multi-agent config is present
+  runtime_hooks:
+    surface: config hooks / documented matcher events
+    parity: adapted-one-to-one where available
+  mcp:
+    surface: runtime config
+    parity: adapter-specific
+  memory:
+    surface: memories/*.md
+    parity: shared-intent
+  safety:
+    surface: sandbox_mode + approval_policy
+    parity: runtime-specific
+notes:
+  - Materialize the selected loadout into the Codex home before launch.
+  - Do not overwrite auth.json, sessions, or sqlite state files.
+  - Source-accounted from Superpowers v6.0.2 Codex SessionStart hook parity without assuming identical Claude syntax.

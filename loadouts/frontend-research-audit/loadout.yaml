@@ -1,0 +1,41 @@
+name: frontend-research-audit
+description: Structured site audit and reference-site analysis layered on top of frontend-design.
+base: frontend-design
+aliases: [frontend-research-audit, frontend audit, site audit, design audit]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 110
+  explicit_keywords: [site audit, design audit, frontend research audit, reference-site analysis]
+purpose: Analyze sites and synthesize redesign briefs without owning implementation.
+when_to_use:
+  - Competitor or reference-site audits.
+  - Structured homepage, section, and state breakdowns.
+when_not_to_use:
+  - Ordinary frontend implementation better handled by frontend-design.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - reporting-contract
+  - browser-verification
+shared_skills:
+  - verification-loop
+  - frontend-motion-audit
+packs:
+  - frontend-design
+  - frontend-research-audit
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: []
+    agents: []
+    hooks: [pre-bash-dev-server-block]
+    mcp: [playwright]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: medium

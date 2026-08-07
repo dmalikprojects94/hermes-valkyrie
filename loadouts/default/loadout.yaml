@@ -1,0 +1,86 @@
+name: default
+description: Lean universal backbone for routine coding and research work.
+base: null
+aliases: [default, general, normal, baseline]
+supported_runtimes: [claude, codex]
+routing:
+  default: true
+  priority: 0
+  explicit_keywords: []
+purpose: Keep the baseline small while still useful for normal repo work.
+when_to_use:
+  - Routine coding or repo tasks.
+  - Mixed coding and research work that does not need a specialty route.
+when_not_to_use:
+  - When the request clearly calls for a named specialty like frontend-design or research.
+shared_instructions:
+  - core-operating-rules
+  - prompt-discipline
+  - context-discipline
+  - doc-chain-discipline
+  - delegation-policy
+  - planning-posture
+  - ponytail-default
+  - coding-discipline
+  - development-workflow
+  - testing-baseline
+  - code-review
+  - security-baseline
+  - git-workflow
+  - reporting-contract
+shared_skills:
+  - verification-loop
+  - prompt-optimizer
+  - ponytail
+  - ponytail-review
+  - ponytail-audit
+  - ponytail-debt
+  - ponytail-help
+  - careful
+  - research-ops
+  - repo-onboarding
+  - caveman
+  - zoom-out
+  - handoff
+  - obsidian-output-routing
+  - hermes-update-readiness
+  - devops-ops
+packs: []
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [plan, research, verify, tdd, code-review, review-pr, build-fix, debug, feature-dev, update-docs, save-session, resume-session, skill-create, model-route, prompt-optimize, quality-gate, refactor-clean, loadout-build, command-inventory, hermes-update-readiness]
+    agents: [planner, code-reviewer, docs-lookup, build-error-resolver, security-reviewer, tdd-guide, code-architect, silent-failure-hunter, performance-optimizer, harness-optimizer]
+    hooks: [suggest-compact, hermes-run-report]
+    mcp: [filesystem, playwright]
+    launch:
+      env:
+        HOME: ${RUNTIME_HOME}
+      command_prefix: export HOME=${RUNTIME_HOME}
+      examples:
+        interactive: export HOME=${RUNTIME_HOME}; cd /target/path; claude
+        one_shot: export HOME=${RUNTIME_HOME}; cd /target/path; claude -p "<prompt>" --max-turns 2
+        structured_json: export HOME=${RUNTIME_HOME}; cd /target/path; claude -p "<prompt>" --output-format json --max-turns 1
+        structured_stream: export HOME=${RUNTIME_HOME}; cd /target/path; claude -p "<prompt>" --output-format stream-json --include-partial-messages --include-hook-events --max-turns 1
+        captured_json: export HOME=${RUNTIME_HOME}; cd /target/path; python ~/.claude/bin/claude_capture_wrapper.py --label "structured-run" --command claude -p "<prompt>" --output-format json --max-turns 1
+      notes:
+        - Resolve ${RUNTIME_HOME} at materialization/launch time so Claude Code sees the operator's authenticated CLI context instead of a gateway profile sandbox home.
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: medium
+    launch:
+      env:
+        HOME: ${RUNTIME_HOME}
+      command_prefix: export HOME=${RUNTIME_HOME}
+      examples:
+        interactive: export HOME=${RUNTIME_HOME}; cd /target/git/repo; codex
+        one_shot: export HOME=${RUNTIME_HOME}; cd /target/git/repo; codex exec "<prompt>"
+      notes:
+        - Resolve ${RUNTIME_HOME} at materialization/launch time so Codex sees the operator's authenticated CLI context instead of a gateway profile sandbox home.
+        - Use the resolved runtime home for normal launches so the existing Codex OAuth session stays available.
+        - Codex still needs to run inside a git repo.

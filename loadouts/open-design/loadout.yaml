@@ -1,0 +1,42 @@
+name: open-design
+description: Artifact-first design-builder route layered on top of frontend-design.
+base: frontend-design
+aliases: [open-design, open design, design-builder, prototype generation]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 120
+  explicit_keywords: [open design, design-builder, prototype generation, design direction]
+purpose: Add question-first discovery and artifact-first prototype generation to the frontend surface.
+when_to_use:
+  - Design-builder work with explicit direction selection.
+  - Prototype or artifact generation with operator checkpoints.
+when_not_to_use:
+  - Routine UI implementation.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - reporting-contract
+  - browser-verification
+shared_skills:
+  - verification-loop
+  - frontend-motion-audit
+  - shadcn-discipline
+packs:
+  - frontend-design
+  - open-design
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: []
+    agents: []
+    hooks: [pre-bash-dev-server-block]
+    mcp: [playwright]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: medium

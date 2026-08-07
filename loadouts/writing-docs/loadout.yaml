@@ -1,0 +1,48 @@
+name: writing-docs
+description: Documentation-first writing, runbooks, READMEs, API docs, changelogs, and handoff artifacts.
+base: default
+aliases: [writing-docs, writing docs, docs writing, documentation, docs]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 80
+  explicit_keywords:
+    - writing docs
+    - documentation
+    - docs writing
+    - user docs
+    - runbook
+    - api docs
+purpose: Keep documentation authorship as a deliberate route with source-truth audits and reader-focused outputs.
+when_to_use:
+  - Writing or restructuring user docs, developer docs, README content, runbooks, API docs, migration docs, or changelogs.
+  - Turning implementation knowledge into durable handoff material.
+when_not_to_use:
+  - Code changes where docs are only a small closeout note.
+  - Marketing or customer conversion copy; use marketing for that.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - doc-chain-discipline
+  - reporting-contract
+shared_skills:
+  - verification-loop
+  - research-ops
+  - writing-docs
+packs:
+  - writing-docs
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [plan, research, verify, update-docs, prompt-optimize, save-session, resume-session, command-inventory]
+    agents: [planner, docs-lookup, code-reviewer]
+    hooks: [suggest-compact, hermes-run-report]
+    mcp: [filesystem, playwright]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: high

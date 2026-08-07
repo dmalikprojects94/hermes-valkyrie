@@ -1,0 +1,16 @@
+{
+  "snapshot_source": "/home/<operator>/.hermes/profiles/gateway/skills/autonomous-ai-agents",
+  "snapshot_purpose": "Track deterministic Hermes skills that call and govern the terminal loadout system: launch routing, prompt enhancement, real-home rules, visible launch disclosure, watcher closeout, and runtime-specific Claude/Codex operation.",
+  "skills": [
+    "coding-terminal-loadout-system",
+    "coding-agent-prompt-enhancer",
+    "coding-cli-real-home-launch",
+    "claude-code-loadout-disclosure",
+    "claude-code",
+    "codex"
+  ],
+  "sync_rule": "When a reviewed Hermes slash-command or loadout workflow intentionally changes coding-terminal behavior, copy the corresponding deterministic skill directories here and commit the diff with the related loadout-system change. Do not auto-sync or self-update during a run.",
+  "skill_update_policy": "frozen-deterministic-snapshot",
+  "self_update_policy": "never self-update from inside a managed coding-terminal run",
+  "growth_policy": "Do not mutate these deterministic gateway skills as ambient memory. Grow behavior through reviewed slash-command/loadout changes, new shared skills, new loadout packs, or explicit source-ingestion commits."
+}

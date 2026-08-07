@@ -1,0 +1,156 @@
+commands:
+  plan:
+    title: Plan
+    purpose: Turn requests into explicit implementation steps.
+    source: adapters/claude/commands/plan.md
+  research:
+    title: Research
+    purpose: Run investigation-first analysis and summarize evidence.
+    source: adapters/claude/commands/research.md
+  verify:
+    title: Verify
+    purpose: Check the result with targeted evidence before completion.
+    source: adapters/claude/commands/verify.md
+  tdd:
+    title: TDD
+    purpose: Enforce test-first implementation loops.
+    source: adapters/claude/commands/tdd.md
+  code-review:
+    title: Code Review
+    purpose: Review code quality, risks, and gaps.
+    source: adapters/claude/commands/code-review.md
+  review-pr:
+    title: Review PR
+    purpose: Review pull-request-ready changes with merge awareness.
+    source: adapters/claude/commands/review-pr.md
+  build-fix:
+    title: Build Fix
+    purpose: Diagnose and resolve build failures.
+    source: adapters/claude/commands/build-fix.md
+  debug:
+    title: Debug
+    purpose: Work systematically from symptom to root cause.
+    source: adapters/claude/commands/debug.md
+  feature-dev:
+    title: Feature Dev
+    purpose: Implement features with plan, execution, and verification discipline.
+    source: adapters/claude/commands/feature-dev.md
+  update-docs:
+    title: Update Docs
+    purpose: Refresh docs to match reality after changes.
+    source: adapters/claude/commands/update-docs.md
+  save-session:
+    title: Save Session
+    purpose: Capture durable session context before pausing.
+    source: adapters/claude/commands/save-session.md
+  resume-session:
+    title: Resume Session
+    purpose: Reload saved context and continue deliberately.
+    source: adapters/claude/commands/resume-session.md
+  skill-create:
+    title: Skill Create
+    purpose: Package a reusable workflow or operating pattern.
+    source: adapters/claude/commands/skill-create.md
+  model-route:
+    title: Model Route
+    purpose: Choose the right model/runtime posture for the task.
+    source: adapters/claude/commands/model-route.md
+  prompt-optimize:
+    title: Prompt Optimize
+    purpose: Improve instruction clarity before execution.
+    source: adapters/claude/commands/prompt-optimize.md
+  quality-gate:
+    title: Quality Gate
+    purpose: Run a final quality and risk pass before completion.
+    source: adapters/claude/commands/quality-gate.md
+  refactor-clean:
+    title: Refactor Clean
+    purpose: Clean up structure while preserving behavior.
+    source: adapters/claude/commands/refactor-clean.md
+  context-budget:
+    title: Context Budget
+    purpose: Audit context growth and decide whether to compact or relaunch.
+    source: adapters/claude/commands/context-budget.md
+  harness-audit:
+    title: Harness Audit
+    purpose: Inspect runtime configuration and session posture.
+    source: adapters/claude/commands/harness-audit.md
+  loadout-build:
+    title: Loadout Build
+    purpose: Admission-test a candidate capability against the default backbone.
+    source: adapters/claude/commands/loadout-build.md
+  command-inventory:
+    title: Command Inventory
+    purpose: List the slash commands and command-equivalent skills bound into the active Hermes loadout.
+    source: adapters/claude/commands/command-inventory.md
+  hermes-update-readiness:
+    title: Hermes Update Readiness
+    purpose: Run the Hermes terminal-loadout update readiness loop against an updated Hermes candidate.
+    source: adapters/claude/commands/hermes-update-readiness.md
+  watch:
+    title: Watch
+    purpose: Run an evidence-first Claude Video-style analysis of a video source.
+    source: adapters/claude/commands/watch.md
+  repo-audit:
+    title: Repo Audit
+    purpose: Run the GitHub-repo-to-loadout pipeline in audit mode without live loadout writes.
+    source: adapters/claude/commands/repo-audit.md
+  repo-full-pass:
+    title: Repo Full Pass
+    purpose: Run the GitHub-repo-to-loadout pipeline through audit, prepare, approved apply, validation, and post-implementation review.
+    source: adapters/claude/commands/repo-full-pass.md
+agents:
+  planner:
+    role: Implementation planner and decomposer.
+    source: adapters/claude/agents/planner.md
+  code-reviewer:
+    role: General code quality reviewer.
+    source: adapters/claude/agents/code-reviewer.md
+  docs-lookup:
+    role: Documentation and API reference retriever.
+    source: adapters/claude/agents/docs-lookup.md
+  build-error-resolver:
+    role: Build-failure diagnosis specialist.
+    source: adapters/claude/agents/build-error-resolver.md
+  security-reviewer:
+    role: Security and misuse risk reviewer.
+    source: adapters/claude/agents/security-reviewer.md
+  tdd-guide:
+    role: Test-first implementation enforcer.
+    source: adapters/claude/agents/tdd-guide.md
+  code-architect:
+    role: Architecture and system-structure reviewer.
+    source: adapters/claude/agents/code-architect.md
+  silent-failure-hunter:
+    role: Finds hidden failure paths and weak assumptions.
+    source: adapters/claude/agents/silent-failure-hunter.md
+  performance-optimizer:
+    role: Performance diagnosis and tuning reviewer.
+    source: adapters/claude/agents/performance-optimizer.md
+  harness-optimizer:
+    role: Runtime and harness quality specialist.
+    source: adapters/claude/agents/harness-optimizer.md
+  refactor-cleaner:
+    role: Deep refactor and cleanup specialist.
+    source: adapters/claude/agents/refactor-cleaner.md
+  typescript-reviewer:
+    role: TypeScript-specific reviewer for larger code changes.
+    source: adapters/claude/agents/typescript-reviewer.md
+hooks:
+  suggest-compact:
+    event: PreToolUse
+    matcher: "*"
+    source: shared/hooks/suggest-compact.js
+  hermes-run-report:
+    event: Stop
+    matcher: "*"
+    source: shared/hooks/hermes-run-report.js
+  pre-bash-dev-server-block:
+    event: PreToolUse
+    matcher: "Bash"
+    source: shared/hooks/pre-bash-dev-server-block.js
+mcp_servers:
+  filesystem:
+    source: shared/mcp/filesystem.json
+  playwright:
+    source: shared/mcp/playwright.json

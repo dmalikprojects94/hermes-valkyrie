@@ -1,0 +1,43 @@
+name: deep-coding
+description: Main serious coding execution surface for sustained implementation work.
+base: default
+aliases: [deep-coding, deep coding, serious coding, implementation]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 90
+  explicit_keywords: [deep coding, serious coding, multi-file implementation, sustained implementation]
+purpose: Intensify implementation discipline without broadening into unrelated specialties.
+when_to_use:
+  - Long multi-file implementation work.
+  - Multi-phase refactoring or architecture-sensitive coding.
+when_not_to_use:
+  - Lightweight fixes or generic repo work.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - reporting-contract
+shared_skills:
+  - verification-loop
+  - diagnose
+  - prototype
+  - tdd
+  - improve-codebase-architecture
+  - two-axis-review
+packs:
+  - deep-coding
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [context-budget, harness-audit]
+    agents: [refactor-cleaner, typescript-reviewer]
+    hooks: []
+    mcp: []
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: high

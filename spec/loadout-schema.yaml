@@ -1,0 +1,97 @@
+version: 0.2
+kind: hermes-terminal-loadout-schema
+
+summary:
+  description: Declarative schema for Hermes-managed terminal runtime loadouts.
+  status: active-draft
+
+required_fields:
+  - name
+  - description
+  - aliases
+  - supported_runtimes
+  - routing
+  - purpose
+  - when_to_use
+  - when_not_to_use
+  - shared_instructions
+  - shared_skills
+  - packs
+  - session_policy
+  - runtime_overrides
+
+field_definitions:
+  name:
+    type: string
+    description: Canonical loadout name.
+  description:
+    type: string
+    description: Short operator-facing summary.
+  base:
+    type: string|null
+    description: Optional parent loadout for inheritance.
+  aliases:
+    type: list[string]
+    description: Direct route aliases Hermes can match against.
+  supported_runtimes:
+    type: list[string]
+    allowed_values: [claude, codex]
+  routing:
+    type: object
+    fields:
+      default:
+        type: boolean
+      priority:
+        type: integer
+      explicit_keywords:
+        type: list[string]
+  purpose:
+    type: string
+  when_to_use:
+    type: list[string]
+  when_not_to_use:
+    type: list[string]
+  shared_instructions:
+    type: list[string]
+    description: IDs resolved from shared/instructions/<id>.md
+  shared_skills:
+    type: list[string]
+    description: IDs resolved from shared/skills/<id>.md
+  packs:
+    type: list[string]
+    description: IDs resolved from shared/packs/<id>/PACK.md
+  session_policy:
+    type: object
+    fields:
+      prefer_fresh_session:
+        type: boolean
+      compact_warning_band:
+        type: string
+      reuse_allowed:
+        type: boolean
+  runtime_overrides:
+    type: object
+    fields:
+      claude:
+        type: object
+        fields:
+          commands:
+            type: list[string]
+          agents:
+            type: list[string]
+          hooks:
+            type: list[string]
+          mcp:
+            type: list[string]
+      codex:
+        type: object
+        fields:
+          config:
+            type: object
+            description: Values rendered into the managed Codex config block.
+
+notes:
+  - Hermes chooses runtime and loadout separately.
+  - Inheritance merges shared instructions, skills, packs, and runtime-specific lists.
+  - Child loadouts keep their own aliases and routing identity.
+  - The apply script materializes the active runtime surface on disk.

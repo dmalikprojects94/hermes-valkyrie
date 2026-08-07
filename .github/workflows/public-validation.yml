@@ -1,0 +1,59 @@
+name: Public Validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  public-validation:
+    name: Validate public checkout
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: .github/workflows/public-validation.yml
+
+      - name: Install validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml
+
+      - name: Configure non-/tmp TMPDIR
+        run: |
+          mkdir -p "${{ runner.temp }}/loadout-validation"
+          echo "TMPDIR=${{ runner.temp }}/loadout-validation" >> "$GITHUB_ENV"
+
+      - name: Validate loadout definitions
+        run: python scripts/validate_loadouts.py
+
+      - name: Resolve Claude research route
+        run: python scripts/resolve_route.py --runtime claude --request "Use Claude for research" --explicit-loadout research
+
+      - name: Resolve Codex research route
+        run: python scripts/resolve_route.py --runtime codex --request "Use Codex for research" --explicit-loadout research
+
+      - name: Materialize Claude research loadout
+        run: python scripts/apply_loadout.py --runtime claude --loadout research --output-root output
+
+      - name: Materialize Codex research loadout
+        run: python scripts/apply_loadout.py --runtime codex --loadout research --output-root output
+
+      - name: Compare runtime command inventory
+        run: python scripts/list_runtime_commands.py --compare --loadout research --format markdown
+
+      - name: Run clean onboarding smoke
+        run: python scripts/smoke_clean_hermes_onboarding.py --json
+
+      - name: Check for whitespace and merge-marker errors
+        run: git diff --check

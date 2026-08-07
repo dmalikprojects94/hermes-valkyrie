@@ -1,0 +1,1 @@
+Research how Hermes Valkyrie materializes a research loadout for Claude Code. Return the resolved runtime/loadout, the key files generated under output/, and any safety boundary that prevents live-home writes by default.

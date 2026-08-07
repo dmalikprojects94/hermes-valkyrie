@@ -1,0 +1,34 @@
+name: default
+runtime_targets:
+  - codex
+base: backbone
+purpose: Lean default Codex runtime for repository-grounded execution with Hermes-managed oversight.
+when_to_use:
+  - Small to medium repo tasks.
+  - Straightforward implementation, review, or planning inside a git workspace.
+when_not_to_use:
+  - Heavy browser or design work better suited to Claude plus browser tooling.
+  - Long research-first work that should be decomposed before execution.
+adds:
+  instructions:
+    - shared/reporting-basics.md
+    - shared/repo-hygiene.md
+  skills:
+    - shared/verification-loop.md
+reporting:
+  completion_format: concise-status
+  include_changed_files: true
+  include_blockers: true
+  include_followups: true
+session_policy:
+  prefer_fresh_session: true
+  compact_threshold: n/a
+  reuse_allowed: true
+runtime_overrides:
+  codex:
+    files:
+      - config.toml
+      - skills/default.md
+    notes:
+      - Respect Codex sandbox and approval behavior.
+      - Keep prompts shorter and more execution-oriented than Claude equivalents.

@@ -1,0 +1,52 @@
+name: devops
+description: Operational deployment, infrastructure, CI/CD, hosting, observability, and rollback-aware systems work.
+base: default
+aliases: [devops, dev ops, ops, infrastructure, deployment, ci cd, hosting]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 90
+  explicit_keywords:
+    - devops
+    - dev ops
+    - infrastructure
+    - deployment
+    - ci/cd
+    - ci cd
+    - hosting
+    - observability
+purpose: Provide a named operational lane without overloading the default backbone.
+when_to_use:
+  - Deployment, hosting, CI/CD, container, server, observability, or production-smoke work.
+  - Tasks that need environment audits, rollback plans, runbooks, or incident-style verification.
+when_not_to_use:
+  - Routine application implementation that only needs local tests.
+  - Pure planning without operational systems; use project-planner unless the plan is mainly infrastructure.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - development-workflow
+  - testing-baseline
+  - security-baseline
+  - reporting-contract
+shared_skills:
+  - verification-loop
+  - careful
+  - devops-ops
+packs:
+  - devops
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [plan, verify, quality-gate, build-fix, debug, update-docs, save-session, resume-session, command-inventory]
+    agents: [planner, build-error-resolver, security-reviewer, performance-optimizer, docs-lookup]
+    hooks: [suggest-compact, hermes-run-report]
+    mcp: [filesystem, playwright]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: high

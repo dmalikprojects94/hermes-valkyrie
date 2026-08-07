@@ -1,0 +1,19 @@
+{
+  "examples": [
+    {
+      "runtime": "claude",
+      "request_text": "Use Claude for frontend design on the landing page",
+      "resolved_loadout": "frontend-design"
+    },
+    {
+      "runtime": "codex",
+      "request_text": "Use Codex for research on this library and summarize the docs",
+      "resolved_loadout": "research"
+    },
+    {
+      "runtime": "codex",
+      "request_text": "Use Codex on this repo and fix the bug",
+      "resolved_loadout": "default"
+    }
+  ]
+}

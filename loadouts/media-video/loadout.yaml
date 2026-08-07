@@ -1,0 +1,32 @@
+name: media-video
+description: Media and video generation route for animation-heavy work.
+base: default
+aliases: [media-video, media, video, animation]
+supported_runtimes: [claude]
+routing:
+  default: false
+  priority: 70
+  explicit_keywords: [media video, remotion, manim, video generation, animation]
+purpose: Keep video and animation posture separate from routine coding surfaces.
+when_to_use:
+  - Animation and video generation tasks.
+when_not_to_use:
+  - General coding or non-media work.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - reporting-contract
+shared_skills:
+  - verification-loop
+packs:
+  - media-video
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    commands: [watch]
+    agents: []
+    hooks: []
+    mcp: [playwright]

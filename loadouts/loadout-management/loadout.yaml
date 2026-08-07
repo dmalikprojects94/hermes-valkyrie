@@ -1,0 +1,77 @@
+name: loadout-management
+description: Source-accounted update and management surface for maintaining Hermes terminal loadouts.
+base: default
+aliases: [loadout-management, loadout management, update-management, update management, source-repo management, source management, source-list onboarding, source list onboarding, source audit, provenance mapping, migration task packs, runtime parity, loadout upkeep]
+supported_runtimes: [claude, codex]
+routing:
+  default: false
+  priority: 95
+  explicit_keywords: [loadout management, update management, source-accounted, source accounted, source repo, source list, source-list onboarding, source list onboarding, source audit, audit source list, provenance mapping, map provenance, migration task pack, migration task packs, Claude/Codex parity, runtime parity, loadout upkeep, manage loadouts]
+purpose: Keep source intake, provenance, parity mapping, hypothesis planning, and migration task-pack work out of the default runtime while making it available as an explicit management mode.
+when_to_use:
+  - Auditing GitHub repos or source lists before adopting ideas into the loadout repo.
+  - Updating, maintaining, or designing Claude/Codex terminal loadouts.
+  - Creating source-accounted synthesis, hypotheses, or migration task packs.
+  - Verifying loadout reset behavior and Claude/Codex command-capability parity.
+  - Keeping ingestion recommendations synchronized across Claude Code and Codex whenever a candidate is portable.
+when_not_to_use:
+  - Routine coding that does not touch terminal loadouts or GitHub repo/source-list intake.
+  - Direct product implementation unrelated to loadout/runtime management.
+  - Frontend/design-only work unless it is specifically about a loadout capability.
+  - Generic article, web, media, or brain-ingestion work that does not involve GitHub repo/source-list adoption for terminal loadouts.
+shared_instructions:
+  - core-operating-rules
+  - context-discipline
+  - doc-chain-discipline
+  - planning-posture
+  - testing-baseline
+  - git-workflow
+  - reporting-contract
+shared_skills:
+  - source-list-onboarding
+  - autonomous-repo-integration
+  - loadout-ingestion-orchestrator
+  - source-ingestion-analysis-loop
+  - source-ingestion-upgrade-loop
+  - loadout-reviewed-run
+  - loadout-full-pass-run
+  - source-ingestion-step-1-repo-map-audit
+  - source-ingestion-step-2-functionality-comparison
+  - source-ingestion-step-3-integration-plan
+  - source-ingestion-step-4-change-packet-review
+  - source-ingestion-step-5-implementation-validation
+  - source-ingestion-step-6-closeout
+  - github-source-intake
+  - repo-surface-auditor
+  - provenance-mapper
+  - runtime-parity-mapper
+  - transfer-skill-builder
+  - base-layer-guardian
+  - source-synthesis
+  - loadout-hypothesis-builder
+  - migration-task-pack-writer
+  - loadout-reset-verifier
+  - command-capability-parity-verifier
+  - loadout-development-closeout
+  - verification-loop
+  - loadout-builder
+  - repo-onboarding
+  - repo-audit
+  - repo-full-pass
+  - handoff
+packs: []
+session_policy:
+  prefer_fresh_session: true
+  compact_warning_band: 35-55%
+  reuse_allowed: false
+runtime_overrides:
+  claude:
+    commands: [plan, research, verify, update-docs, skill-create, loadout-build, command-inventory, hermes-update-readiness, quality-gate, save-session, repo-audit, repo-full-pass]
+    agents: [planner, docs-lookup, code-architect, code-reviewer, harness-optimizer]
+    hooks: [suggest-compact, hermes-run-report]
+    mcp: [filesystem]
+  codex:
+    config:
+      approval_policy: on-request
+      sandbox_mode: workspace-write
+      model_reasoning: high

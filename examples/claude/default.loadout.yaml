@@ -1,0 +1,36 @@
+name: default
+runtime_targets:
+  - claude
+base: backbone
+purpose: Lean default Claude runtime for broad operational and coding work.
+when_to_use:
+  - General tasks that do not justify a specialist heavy surface.
+  - First-pass triage before escalating to a deeper coding or research lane.
+when_not_to_use:
+  - Deep multi-file implementation that needs a larger coding surface.
+  - Extended research sessions with many external references.
+adds:
+  instructions:
+    - shared/reporting-basics.md
+    - shared/context-discipline.md
+  commands:
+    - claude/plan.md
+  skills:
+    - shared/verification-loop.md
+reporting:
+  completion_format: concise-status
+  include_changed_files: true
+  include_blockers: true
+  include_followups: true
+session_policy:
+  prefer_fresh_session: true
+  compact_threshold: 35-55%
+  reuse_allowed: true
+runtime_overrides:
+  claude:
+    files:
+      - CLAUDE.md
+      - commands/plan.md
+    notes:
+      - Keep default Claude surface intentionally lean.
+      - Push specialized material into optional packs instead of the baseline.
